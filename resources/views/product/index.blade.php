@@ -14,7 +14,7 @@
                     <a href="{{ route('product.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Tambah Produk</a>
 
                     <div class="mt-6 mb-4">
-                        <form method="GET" action="{{ route('dashboard') }}" class="flex">
+                        <form method="GET" action="{{ route('product.index') }}" class="flex">
                             <input type="text" name="search" placeholder="Cari nama produk atau kategori..." value="{{ $search }}" class="border-gray-300 rounded-l-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 flex-1">
                             <button type="submit" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-r-md">Search</button>
                         </form>
@@ -23,6 +23,12 @@
                     @if(session('success'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
                             <span class="block sm:inline">{{ session('success') }}</span>
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('error') }}</span>
                         </div>
                     @endif
 
@@ -41,7 +47,7 @@
                             <tbody class="bg-white divide-y divide-gray-200">
                             @forelse($products as $item)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">{{ $item->categories->category_name ?? 'Tanpa Kategori' }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">{{ $item->category->category_name ?? 'Tanpa Kategori' }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $item->product_name }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap">{{ $item->stock }}</td>

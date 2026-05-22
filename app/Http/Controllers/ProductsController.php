@@ -122,6 +122,11 @@ class ProductsController extends Controller
     {
         $product = products::findOrFail($id);
 
+        if ($product->detailtransactions()->exists()) {
+            return redirect('/product')
+                ->with('error', 'Produk tidak bisa dihapus karena sudah memiliki transaksi.');
+        }
+
         $product->delete();
 
         return redirect('/product')

@@ -22,7 +22,7 @@
                     <div class="mt-6 mb-4">
 
                         <form method="GET"
-                              action="{{ route('dashboard') }}"
+                              action="{{ route('transaction.index') }}"
                               class="flex">
 
                             <input

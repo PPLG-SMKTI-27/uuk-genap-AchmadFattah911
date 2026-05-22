@@ -13,13 +13,20 @@ class TransactionsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->search;
+
         $transactions = transactions::with('details.product')
+            ->when($search, function ($query) use ($search) {
+                $query->where('customer_name', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $search . '%')
+                    ->orWhere('transaction_no', 'like', '%' . $search . '%');
+            })
             ->latest()
             ->paginate(5);
 
-        return view('transaction.index', compact('transactions'));
+        return view('transaction.index', compact('transactions', 'search'));
     }
 
     /**

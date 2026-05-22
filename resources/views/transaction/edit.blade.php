@@ -5,7 +5,7 @@
                 Edit Transaksi
             </h2>
 
-            <a href="{{ route('dashboard') }}"
+            <a href="{{ route('transaction.index') }}"
                class="text-sm text-indigo-600 hover:text-indigo-800 font-medium">
                 ← Kembali
             </a>
@@ -63,7 +63,7 @@
                                         value="{{ $product->id }}"
                                         {{ $detail->product_id == $product->id ? 'selected' : '' }}>
 
-                                        {{ $product->name }}
+                                        {{ $product->product_name }}
                                         | Stock: {{ $product->stock }}
                                         | Rp {{ number_format($product->price,0,',','.') }}
                                     </option>
@@ -95,7 +95,7 @@
                                 class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-xl transition duration-200 shadow-sm">
                                 Update Transaksi
                             </button>
-                            <a href="{{ route('dashboard') }}"
+                            <a href="{{ route('transaction.index') }}"
                                class="px-6 py-3 rounded-xl border border-gray-300 text-gray-700 hover:bg-gray-100 transition duration-200">
                                 Batal
                             </a>

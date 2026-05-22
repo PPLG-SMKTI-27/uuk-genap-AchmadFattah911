@@ -44,7 +44,7 @@
                                 </option>
                                 @foreach($products as $product)
                                     <option value="{{ $product->id }}">
-                                        {{ $product->name }}
+                                        {{ $product->product_name }}
                                         | Stock: {{ $product->stock }}
                                         | Rp {{ number_format($product->price,0,',','.') }}
                                     </option>
